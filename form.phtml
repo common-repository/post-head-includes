@@ -1,0 +1,62 @@
+<?php
+/**
+ * Meta-box form template.
+ * 
+ * @package Postheadincludes
+ * @author Rick Buczynski <richard.buczynski@gmail.com>
+ * @version 0.2.1
+ */
+?>
+<?php /* @var $this WP_Plugins_Postheadincludes_Metabox */ ?>
+<?php $sources=new WP_Plugins_Postheadincludes_Sources($this); ?>
+<?php $items=$this->getItems(); ?>
+
+<link rel="stylesheet" href="<?php echo plugins_url('form.css',__FILE__); ?>" />
+
+<p class="howto"><?php _e('Add scripts and stylesheets to the head of the page.','postheadincludes'); ?></p>
+
+<div class="<?php echo $this->getCssClass('controls'); ?>">
+    <button type="button" data-action="postheadincludes-additem" class="<?php echo $this->getCssClass('additems button'); ?>"><?php _e('Add Item','postheadincludes'); ?></button>
+    <button type="button" data-action="postheadincludes-removeitems" class="<?php echo $this->getCssClass('removeitems button'); ?>"><?php _e('Remove Selected','postheadincludes'); ?></button>
+</div>
+
+<table class="<?php echo $this->getCssClass('items'); ?>">
+    
+    <thead>
+        <tr>
+            <th>
+                <label title="<?php _e('Select All','postheadincludes'); ?>">
+                    <input type="checkbox" data-action="postheadincludes-selectall" />
+                </label>
+            </th>
+            <th>Type</th>
+            <th>Source</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <?php if(count($items)>0) : ?>
+        <?php foreach($items as $item) : ?>
+        <?php include 'form-item.phtml'; ?>
+        <?php endforeach; ?>
+        <?php endif; ?>
+        <tr class="<?php echo $this->getCssClass('empty'); ?>" style="<?php echo ((count($items)>0)?'display:none;':''); ?>">
+            <td colspan="3">
+                <p><?php _e('You have no items attached.','postheadincludes'); ?></p>
+            </td>
+        </tr>
+        <!-- Adding template item -->
+        <?php $item=new WP_Plugins_Postheadincludes_Item(); ?>
+        <?php $item->setIsTemplate(true); ?>
+        <?php include 'form-item.phtml'; ?>
+        <!-- /Adding template item -->
+    </tbody>
+    
+</table>
+
+<script type="text/javascript" src="<?php echo plugins_url('form.js',__FILE__); ?>"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        Postheadincludes.initialize();
+    })
+</script>

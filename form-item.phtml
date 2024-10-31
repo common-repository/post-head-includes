@@ -1,0 +1,40 @@
+<?php
+/**
+ * Meta-box form item template.
+ * 
+ * @package Postheadincludes
+ * @author Rick Buczynski <richard.buczynski@gmail.com>
+ * @version 0.2.1
+ * 
+ */
+?>
+<?php /* @var $this WP_Plugins_Postheadincludes_Metabox */ ?>
+<?php /* @var $item WP_Plugins_Postheadincludes_Item */ ?>
+<?php /* Use $item->getIsTemplate() to prevent template input name attributes from being written */ ?>
+
+<tr class="<?php echo $this->getCssClass((($item->getIsTemplate())?'template-item':'item')); ?>">
+    <td class="<?php echo $this->getCssClass('bulk-action-column'); ?>">
+        <label>
+            <input type="checkbox" name="<?php echo $this->getFieldName($item,'bulk_action'); ?>" class="<?php echo $this->getCssClass((($item->getIsTemplate())?'template-bulk-action':'bulk-action')); ?>" />
+        </label>
+    </td>
+    <td>
+        <select data-name="type" name="<?php echo ((!$item->getIsTemplate())?$this->getFieldName($item,'type'):''); ?>" class="<?php echo $this->getCssClass('block-field'); ?>">
+            <?php foreach($sources->getOptions() as $option) : $selected=($option['value']==$item->getType()?' selected="selected"':''); ?>
+            <option value="<?php echo $option['value']; ?>"<?php echo $selected; ?>><?php echo $option['label']; ?></option>
+            <?php endforeach; ?>
+        </select>
+    </td>
+    <td>
+        <div>
+            <input data-name="src" type="text" name="<?php echo ((!$item->getIsTemplate())?$this->getFieldName($item,'src'):''); ?>" size="45" class="<?php echo $this->getCssClass('block-field'); ?>" value="<?php echo $item->getSrc(); ?>" />
+        </div>
+        <?php // Future: Replace with <details> \ <summary> elements when IE8 is history ?>
+        <div>
+            <div class="<?php echo $this->getCssClass('advanced-options-summary'); ?>" data-action="postheadincludes-toggleoptions"><?php _e('Advanced Options','postheadincludes'); ?></div>
+            <div class="<?php echo $this->getCssClass('advanced-options-container hidden'); ?>">
+                <?php echo $this->getAdvancedOptionsHtml($item); ?>
+            </div>
+        </div>
+    </td>
+</tr>

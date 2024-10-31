@@ -1,0 +1,54 @@
+.postheadincludes.controls {
+    margin: 0.5em;
+    padding: 0.5em;
+    border-bottom: #e8e8e8 solid 1px;
+}
+.postheadincludes.controls > button {
+    margin-right: 0.5em;
+}
+
+.postheadincludes.items th,
+.postheadincludes.items td {
+    padding: 3px;
+}
+.postheadincludes.items thead > tr {
+    background-color: #ffffff;
+}
+.postheadincludes.items tr > td {
+    vertical-align: top;
+}
+.postheadincludes.items tr.empty > td {
+    text-align: center;
+}
+.postheadincludes.items label,
+.postheadincludes.items label > * {
+    cursor: pointer;
+}
+.postheadincludes.items {
+    width: 100%;
+}
+.postheadincludes.items .bulk-action-column {
+    text-align: center;
+}
+.postheadincludes.items .block-field {
+    display: block;
+    width: 100%;
+}
+.postheadincludes.items .advanced-options-summary {
+    cursor: hand;
+    cursor: pointer;
+    margin: 0.5em;
+    text-decoration: underline;
+    color: #000033;
+}
+
+.postheadincludes.items .template-item {
+    display: none;
+}
+
+.postheadincludes.advanced-options-container {
+    margin-left: 0.5em;
+}
+.postheadincludes.advanced-options {
+    width: 100%;
+}
